@@ -1,0 +1,116 @@
+<section class="sg-offer sg-section--flush" id="oferta" data-animate>
+  <div class="sg-offer__bg"></div>
+
+  <div class="sg-container sg-offer__content">
+    {% if section.settings.show_timer_badge %}
+      <div class="sg-offer__badge">
+        {% render 'icon-timer' %}
+        <span>Tiempo limitado</span>
+      </div>
+    {% endif %}
+
+    <h2 class="sg-offer__title">{{ section.settings.title }}</h2>
+
+    {% if section.settings.show_countdown %}
+      <div class="sg-offer__countdown" data-countdown>
+        <div class="sg-offer__countdown-item">
+          <span class="sg-offer__countdown-number" data-countdown-hours>23</span>
+          <span class="sg-offer__countdown-label">Horas</span>
+        </div>
+        <div class="sg-offer__countdown-item">
+          <span class="sg-offer__countdown-number" data-countdown-minutes>59</span>
+          <span class="sg-offer__countdown-label">Minutos</span>
+        </div>
+        <div class="sg-offer__countdown-item">
+          <span class="sg-offer__countdown-number" data-countdown-seconds>59</span>
+          <span class="sg-offer__countdown-label">Segundos</span>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="sg-offer__highlights">
+      {% for block in section.blocks %}
+        <div class="sg-offer__highlight" {{ block.shopify_attributes }}>
+          <div class="sg-offer__highlight-value">{{ block.settings.value }}</div>
+          <div class="sg-offer__highlight-label">{{ block.settings.label }}</div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <a href="{{ section.settings.cta_link }}" class="sg-btn sg-btn--white sg-btn--lg">
+      {{ section.settings.cta_text }}
+      {% render 'icon-arrow-right' %}
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Oferta especial",
+  "tag": "section",
+  "class": "sg-offer-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Oferta de lanzamiento"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto del botón",
+      "default": "Quiero mi kit"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Enlace del botón"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_countdown",
+      "label": "Mostrar cuenta regresiva",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_timer_badge",
+      "label": "Mostrar insignia 'Tiempo limitado'",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "highlight",
+      "name": "Destacado",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Valor destacado",
+          "default": "50%"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Etiqueta",
+          "default": "Descuento"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Oferta especial",
+      "blocks": [
+        { "type": "highlight", "settings": { "value": "50%", "label": "Descuento" } },
+        { "type": "highlight", "settings": { "value": "Gratis", "label": "Envío" } },
+        { "type": "highlight", "settings": { "value": "Limitado", "label": "Stock" } },
+        { "type": "highlight", "settings": { "value": "30 días", "label": "Garantía" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

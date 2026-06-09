@@ -1,0 +1,87 @@
+<section class="sg-results sg-section sg-section--tinted" data-animate>
+  <div class="sg-container">
+    <div class="sg-section__header">
+      <h2 class="sg-section__title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="sg-results__grid">
+      {% for block in section.blocks %}
+        <div class="sg-results__card" {{ block.shopify_attributes }}>
+          <div class="sg-results__pair">
+            <div class="sg-results__side">
+              {% if block.settings.before_image != blank %}
+                <img src="{{ block.settings.before_image | image_url: width: 400 }}" alt="Antes" class="sg-results__image" loading="lazy">
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'sg-results__image sg-placeholder' }}
+              {% endif %}
+              <span class="sg-results__label sg-results__label--before">Antes</span>
+            </div>
+            <div class="sg-results__side">
+              {% if block.settings.after_image != blank %}
+                <img src="{{ block.settings.after_image | image_url: width: 400 }}" alt="Después" class="sg-results__image" loading="lazy">
+              {% else %}
+                {{ 'image' | placeholder_svg_tag: 'sg-results__image sg-placeholder' }}
+              {% endif %}
+              <span class="sg-results__label sg-results__label--after">Después</span>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if section.settings.disclaimer != blank %}
+      <p class="sg-results__disclaimer">{{ section.settings.disclaimer }}</p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Resultados - Antes y después",
+  "tag": "section",
+  "class": "sg-results-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título de sección",
+      "default": "Una rutina que muchas mujeres ya han incorporado"
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "Aviso legal",
+      "default": "* Las experiencias y resultados pueden variar según cada persona."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "result",
+      "name": "Par antes/después",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "before_image",
+          "label": "Imagen 'Antes'"
+        },
+        {
+          "type": "image_picker",
+          "id": "after_image",
+          "label": "Imagen 'Después'"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Resultados - Antes y después",
+      "blocks": [
+        { "type": "result" },
+        { "type": "result" },
+        { "type": "result" }
+      ]
+    }
+  ]
+}
+{% endschema %}

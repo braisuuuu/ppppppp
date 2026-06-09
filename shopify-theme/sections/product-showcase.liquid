@@ -1,0 +1,93 @@
+<section class="sg-product sg-section sg-section--tinted" data-animate>
+  <div class="sg-container">
+    <div class="sg-section__header">
+      <h2 class="sg-section__title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="sg-product__grid">
+      {% for block in section.blocks %}
+        <div class="sg-product__card sg-card sg-card--center" {{ block.shopify_attributes }}>
+          <div class="sg-product__icon sg-icon-circle sg-icon-circle--lg">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 160 }}" alt="{{ block.settings.title | escape }}" class="sg-product__image">
+            {% else %}
+              {% case block.settings.icon %}
+                {% when 'droplet' %}{% render 'icon-droplet' %}
+                {% when 'sparkles' %}{% render 'icon-sparkles' %}
+                {% when 'book' %}{% render 'icon-book' %}
+                {% when 'box' %}{% render 'icon-box' %}
+              {% endcase %}
+            {% endif %}
+          </div>
+          <h3 class="sg-product__card-title">{{ block.settings.title }}</h3>
+          <p class="sg-product__card-text">{{ block.settings.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Producto - Contenido del kit",
+  "tag": "section",
+  "class": "sg-product-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título de sección",
+      "default": "Todo lo que necesitas para tu rutina facial"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Producto del kit",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Imagen del producto"
+        },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono (si no hay imagen)",
+          "options": [
+            { "value": "droplet", "label": "Gotas" },
+            { "value": "sparkles", "label": "Destellos" },
+            { "value": "book", "label": "Guía" },
+            { "value": "box", "label": "Caja" }
+          ],
+          "default": "droplet"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Nombre del producto",
+          "default": "Dermaroller facial"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descripción",
+          "default": "Herramienta profesional para uso en casa"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Producto - Contenido del kit",
+      "blocks": [
+        { "type": "item", "settings": { "icon": "droplet", "title": "Dermaroller facial", "description": "Herramienta profesional para uso en casa" } },
+        { "type": "item", "settings": { "icon": "sparkles", "title": "Sérum facial", "description": "Fórmula hidratante de alta calidad" } },
+        { "type": "item", "settings": { "icon": "book", "title": "Guía paso a paso", "description": "Instrucciones detalladas incluidas" } },
+        { "type": "item", "settings": { "icon": "box", "title": "Estuche elegante", "description": "Almacenamiento seguro y práctico" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

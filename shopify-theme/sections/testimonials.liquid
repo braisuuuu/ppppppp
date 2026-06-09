@@ -1,0 +1,85 @@
+<section class="sg-testimonials sg-section sg-section--white" data-animate>
+  <div class="sg-container">
+    <div class="sg-section__header">
+      <h2 class="sg-section__title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="sg-testimonials__grid">
+      {% for block in section.blocks %}
+        <div class="sg-testimonials__card sg-card" {{ block.shopify_attributes }}>
+          <div class="sg-testimonials__header">
+            {% if block.settings.avatar != blank %}
+              <img src="{{ block.settings.avatar | image_url: width: 112 }}" alt="{{ block.settings.name | escape }}" class="sg-testimonials__avatar">
+            {% else %}
+              <div class="sg-testimonials__avatar sg-testimonials__avatar--placeholder">
+                {% render 'icon-user' %}
+              </div>
+            {% endif %}
+            <div>
+              <h4 class="sg-testimonials__name">{{ block.settings.name }}</h4>
+              <div class="sg-testimonials__stars">
+                {% for i in (1..5) %}{% render 'icon-star-filled' %}{% endfor %}
+              </div>
+            </div>
+          </div>
+          <p class="sg-testimonials__quote">&ldquo;{{ block.settings.comment }}&rdquo;</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonios",
+  "tag": "section",
+  "class": "sg-testimonials-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título de sección",
+      "default": "Lo que opinan nuestras clientas"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonio",
+      "limit": 12,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "avatar",
+          "label": "Foto de perfil"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Nombre",
+          "default": "María González"
+        },
+        {
+          "type": "textarea",
+          "id": "comment",
+          "label": "Comentario",
+          "default": "Mi piel se ve más luminosa y uniforme."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonios",
+      "blocks": [
+        { "type": "testimonial", "settings": { "name": "María González", "comment": "Mi piel se ve más luminosa y uniforme. Lo uso desde hace un mes y los resultados son increíbles." } },
+        { "type": "testimonial", "settings": { "name": "Laura Martínez", "comment": "Me encanta lo fácil que es incorporarlo a mi rutina diaria. 100% recomendado." } },
+        { "type": "testimonial", "settings": { "name": "Ana Rodríguez", "comment": "El sérum deja una sensación increíble en la piel. Mi rostro se siente más suave." } },
+        { "type": "testimonial", "settings": { "name": "Carmen López", "comment": "Después de semanas de uso, noté mi piel más firme y con un brillo saludable." } },
+        { "type": "testimonial", "settings": { "name": "Elena Sánchez", "comment": "La guía paso a paso me ayudó mucho. Ahora es parte esencial de mi skincare." } },
+        { "type": "testimonial", "settings": { "name": "Patricia Ruiz", "comment": "Excelente calidad. El dermaroller es muy suave y el sérum huele delicioso." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

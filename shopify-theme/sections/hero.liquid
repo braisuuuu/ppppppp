@@ -1,0 +1,143 @@
+{{ 'skinglow-kit.css' | asset_url | stylesheet_tag }}
+
+<section class="sg-hero sg-section--overflow" style="position:relative; overflow:hidden;">
+  <div class="sg-hero__bg" style="position:absolute; inset:0; background: var(--gradient-hero); opacity:0.7;"></div>
+  <div class="sg-hero__orb sg-hero__orb--tr"></div>
+  <div class="sg-hero__orb sg-hero__orb--bl"></div>
+
+  <div class="sg-container sg-hero__grid" style="position:relative;">
+    <div class="sg-hero__content">
+      {% if section.settings.badge_text != blank %}
+        <div class="sg-hero__badge">
+          {% render 'icon-sparkles' %}
+          <span>{{ section.settings.badge_text }}</span>
+        </div>
+      {% endif %}
+
+      <h1 class="sg-hero__title">
+        {{ section.settings.title }}
+      </h1>
+
+      <p class="sg-hero__subtitle">{{ section.settings.subtitle }}</p>
+
+      <a href="{{ section.settings.cta_link }}" class="sg-btn sg-btn--primary sg-btn--lg">
+        {{ section.settings.cta_text }}
+        {% render 'icon-arrow-right' %}
+      </a>
+
+      <div class="sg-hero__trust">
+        {% if section.settings.show_shipping %}<span class="sg-hero__trust-item">{% render 'icon-check' %} Envío rápido</span>{% endif %}
+        {% if section.settings.show_secure %}<span class="sg-hero__trust-item">{% render 'icon-shield' %} Pago seguro</span>{% endif %}
+        {% if section.settings.show_guarantee %}<span class="sg-hero__trust-item">{% render 'icon-heart' %} Garantía de satisfacción</span>{% endif %}
+      </div>
+    </div>
+
+    <div class="sg-hero__media">
+      <div class="sg-hero__image-wrap">
+        {% if section.settings.hero_image != blank %}
+          <img
+            src="{{ section.settings.hero_image | image_url: width: 800 }}"
+            alt="{{ section.settings.hero_image.alt | escape }}"
+            loading="eager"
+            class="sg-hero__image"
+          >
+        {% else %}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'sg-hero__image sg-placeholder' }}
+        {% endif %}
+      </div>
+
+      {% if section.settings.show_discount_badge %}
+        <div class="sg-hero__floating-badge sg-animate-float">
+          <div class="sg-hero__badge-icon">{% render 'icon-sparkles' %}</div>
+          <div>
+            <div class="sg-hero__badge-number">{{ section.settings.discount_percent }}%</div>
+            <div class="sg-hero__badge-label">DESCUENTO</div>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero - Dermaroller",
+  "tag": "section",
+  "class": "sg-hero-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge_text",
+      "label": "Texto de insignia",
+      "default": "Cuidado facial premium"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título principal",
+      "default": "Consigue una piel más luminosa, suave y rejuvenecida desde casa"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Descubre el Kit Dermaroller + Sérum que complementa tu rutina de cuidado facial y ayuda a mejorar la apariencia de la piel para un aspecto más radiante."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto del botón CTA",
+      "default": "Comprar ahora"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Enlace del botón CTA"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Imagen principal"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_discount_badge",
+      "label": "Mostrar insignia de descuento flotante",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "discount_percent",
+      "label": "Porcentaje de descuento",
+      "min": 10,
+      "max": 80,
+      "step": 5,
+      "default": 50,
+      "unit": "%"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_shipping",
+      "label": "Mostrar envío rápido",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secure",
+      "label": "Mostrar pago seguro",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_guarantee",
+      "label": "Mostrar garantía",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero - Dermaroller"
+    }
+  ]
+}
+{% endschema %}

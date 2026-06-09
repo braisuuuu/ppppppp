@@ -1,0 +1,79 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "SkinGlow Kit",
+    "theme_version": "1.0.0",
+    "theme_author": "SkinGlow",
+    "theme_documentation_url": "",
+    "theme_support_url": "",
+    "theme_store_url": ""
+  },
+  {
+    "name": "Colores de marca",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_rose",
+        "label": "Color rosa principal",
+        "default": "#fb7185"
+      },
+      {
+        "type": "color",
+        "id": "color_amber",
+        "label": "Color dorado principal",
+        "default": "#fbbf24"
+      },
+      {
+        "type": "color",
+        "id": "color_rose_light",
+        "label": "Rosa claro (fondos)",
+        "default": "#fff1f2"
+      },
+      {
+        "type": "color",
+        "id": "color_amber_light",
+        "label": "Dorado claro (fondos)",
+        "default": "#fffbeb"
+      }
+    ]
+  },
+  {
+    "name": "Tipografía",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "heading_font",
+        "label": "Fuente para títulos",
+        "default": "assistant_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "body_font",
+        "label": "Fuente para cuerpo",
+        "default": "assistant_n4"
+      }
+    ]
+  },
+  {
+    "name": "Contenido global",
+    "settings": [
+      {
+        "type": "text",
+        "id": "brand_name",
+        "label": "Nombre de marca",
+        "default": "SkinGlow Kit"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo de marca"
+      },
+      {
+        "type": "text",
+        "id": "copyright_text",
+        "label": "Texto de copyright",
+        "default": "© 2024 SkinGlow Kit. Todos los derechos reservados."
+      }
+    ]
+  }
+]

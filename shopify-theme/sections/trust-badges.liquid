@@ -1,0 +1,66 @@
+<section class="sg-trust sg-section sg-section--bordered" data-animate>
+  <div class="sg-container">
+    <div class="sg-trust__grid">
+      {% for block in section.blocks %}
+        <div class="sg-trust__item" {{ block.shopify_attributes }}>
+          <div class="sg-trust__icon sg-icon-circle">
+            {% case block.settings.icon %}
+              {% when 'shield' %}{% render 'icon-shield' %}
+              {% when 'truck' %}{% render 'icon-truck' %}
+              {% when 'headphones' %}{% render 'icon-headphones' %}
+              {% when 'check' %}{% render 'icon-check' %}
+            {% endcase %}
+          </div>
+          <span class="sg-trust__text">{{ block.settings.text }}</span>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Insignias de confianza",
+  "tag": "section",
+  "class": "sg-trust-section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Insignia",
+      "limit": 6,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            { "value": "shield", "label": "Escudo" },
+            { "value": "truck", "label": "Camión" },
+            { "value": "headphones", "label": "Atención" },
+            { "value": "check", "label": "Check" }
+          ],
+          "default": "shield"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Texto",
+          "default": "Pago 100% seguro"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Insignias de confianza",
+      "blocks": [
+        { "type": "badge", "settings": { "icon": "shield", "text": "Pago 100% seguro" } },
+        { "type": "badge", "settings": { "icon": "truck", "text": "Envío rápido" } },
+        { "type": "badge", "settings": { "icon": "headphones", "text": "Atención al cliente" } },
+        { "type": "badge", "settings": { "icon": "check", "text": "Garantía de satisfacción" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

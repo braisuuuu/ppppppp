@@ -1,0 +1,46 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero"
+    },
+    "benefits": {
+      "type": "benefits"
+    },
+    "product_showcase": {
+      "type": "product-showcase"
+    },
+    "how_it_works": {
+      "type": "how-it-works"
+    },
+    "results": {
+      "type": "results"
+    },
+    "testimonials": {
+      "type": "testimonials"
+    },
+    "special_offer": {
+      "type": "special-offer"
+    },
+    "faq": {
+      "type": "faq"
+    },
+    "trust_badges": {
+      "type": "trust-badges"
+    },
+    "final_cta": {
+      "type": "final-cta"
+    }
+  },
+  "order": [
+    "hero",
+    "benefits",
+    "product_showcase",
+    "how_it_works",
+    "results",
+    "testimonials",
+    "special_offer",
+    "faq",
+    "trust_badges",
+    "final_cta"
+  ]
+}

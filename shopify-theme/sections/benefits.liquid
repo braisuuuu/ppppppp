@@ -1,0 +1,86 @@
+<section class="sg-benefits sg-section sg-section--white" data-animate>
+  <div class="sg-container">
+    <div class="sg-section__header">
+      <h2 class="sg-section__title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="sg-benefits__grid">
+      {% for block in section.blocks %}
+        <div class="sg-benefits__card sg-card" {{ block.shopify_attributes }}>
+          <div class="sg-benefits__icon sg-icon-circle">
+            {% case block.settings.icon %}
+              {% when 'sparkles' %}{% render 'icon-sparkles' %}
+              {% when 'droplets' %}{% render 'icon-droplets' %}
+              {% when 'heart' %}{% render 'icon-heart' %}
+              {% when 'home' %}{% render 'icon-home' %}
+              {% when 'star' %}{% render 'icon-star' %}
+            {% endcase %}
+          </div>
+          <h3 class="sg-benefits__card-title">{{ block.settings.title }}</h3>
+          <p class="sg-benefits__card-text">{{ block.settings.description }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Beneficios",
+  "tag": "section",
+  "class": "sg-benefits-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título de sección",
+      "default": "¿Por qué elegir nuestro Kit Dermaroller + Sérum?"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Beneficio",
+      "limit": 8,
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icono",
+          "options": [
+            { "value": "sparkles", "label": "Destellos" },
+            { "value": "droplets", "label": "Gotas" },
+            { "value": "heart", "label": "Corazón" },
+            { "value": "home", "label": "Casa" },
+            { "value": "star", "label": "Estrella" }
+          ],
+          "default": "sparkles"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Beneficio"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Descripción",
+          "default": "Descripción del beneficio."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Beneficios",
+      "blocks": [
+        { "type": "benefit", "settings": { "icon": "sparkles", "title": "Piel más uniforme", "description": "Favorece una piel de aspecto más uniforme y radiante." } },
+        { "type": "benefit", "settings": { "icon": "droplets", "title": "Mejor absorción", "description": "Ayuda a mejorar la absorción del sérum." } },
+        { "type": "benefit", "settings": { "icon": "heart", "title": "Rutina completa", "description": "Complementa la rutina de cuidado facial." } },
+        { "type": "benefit", "settings": { "icon": "home", "title": "Fácil de usar", "description": "Fácil de utilizar desde casa." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

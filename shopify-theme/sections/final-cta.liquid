@@ -1,0 +1,48 @@
+<section class="sg-final-cta sg-section sg-section--soft" data-animate>
+  <div class="sg-container sg-final-cta__content">
+    <h2 class="sg-section__title">{{ section.settings.title }}</h2>
+    <p class="sg-final-cta__text">{{ section.settings.subtitle }}</p>
+    <a href="{{ section.settings.cta_link }}" class="sg-btn sg-btn--primary sg-btn--lg">
+      {{ section.settings.cta_text }}
+      {% render 'icon-arrow-right' %}
+    </a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "CTA Final",
+  "tag": "section",
+  "class": "sg-final-cta-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título",
+      "default": "Empieza hoy tu nueva rutina de cuidado facial"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtítulo",
+      "default": "Regálale a tu piel la atención que merece con nuestro Kit Dermaroller + Sérum."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Texto del botón",
+      "default": "Comprar ahora"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Enlace del botón"
+    }
+  ],
+  "presets": [
+    {
+      "name": "CTA Final"
+    }
+  ]
+}
+{% endschema %}

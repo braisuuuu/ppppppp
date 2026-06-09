@@ -1,0 +1,72 @@
+<section class="sg-faq sg-section sg-section--gradient" data-animate>
+  <div class="sg-container sg-faq__container">
+    <div class="sg-section__header">
+      <h2 class="sg-section__title">{{ section.settings.title }}</h2>
+    </div>
+
+    <div class="sg-faq__list">
+      {% for block in section.blocks %}
+        <div class="sg-faq__item" {{ block.shopify_attributes }}>
+          <button class="sg-faq__trigger" aria-expanded="false" data-faq-trigger>
+            <span>{{ block.settings.question }}</span>
+            <span class="sg-faq__chevron" data-faq-chevron>
+              {% render 'icon-chevron-down' %}
+            </span>
+          </button>
+          <div class="sg-faq__answer" data-faq-answer>
+            <p>{{ block.settings.answer }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Preguntas frecuentes",
+  "tag": "section",
+  "class": "sg-faq-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Título de sección",
+      "default": "Preguntas frecuentes"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Pregunta",
+      "limit": 15,
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Pregunta",
+          "default": "¿Cómo se utiliza el kit?"
+        },
+        {
+          "type": "textarea",
+          "id": "answer",
+          "label": "Respuesta",
+          "default": "Primero, limpia tu rostro. Luego, utiliza el dermaroller con movimientos suaves. Finalmente, aplica el sérum."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Preguntas frecuentes",
+      "blocks": [
+        { "type": "question", "settings": { "question": "¿Cómo se utiliza el kit?", "answer": "Primero, limpia tu rostro. Luego, utiliza el dermaroller con movimientos suaves y horizontales, seguidos de movimientos verticales y diagonales. Finalmente, aplica el sérum para completar tu rutina." } },
+        { "type": "question", "settings": { "question": "¿Con qué frecuencia se recomienda usarlo?", "answer": "Recomendamos usar el dermaroller 1-2 veces por semana, dejando pasar al menos 3-4 días entre sesiones. El sérum puede aplicarse diariamente." } },
+        { "type": "question", "settings": { "question": "¿Cuándo recibiré mi pedido?", "answer": "Los pedidos se procesan en 24-48 horas. El envío estándar tarda entre 3-5 días laborables." } },
+        { "type": "question", "settings": { "question": "¿El envío es gratuito?", "answer": "Sí, ofrecemos envío gratuito en todos los pedidos durante nuestra oferta de lanzamiento." } },
+        { "type": "question", "settings": { "question": "¿Tiene garantía?", "answer": "Ofrecemos una garantía de satisfacción de 30 días. Si no estás satisfecha, te devolvemos el dinero sin preguntas." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
